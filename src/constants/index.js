@@ -14,12 +14,12 @@ import {
     threejs,
     sql, 
     python,
-    NxtWave,
     google,
     react,
     chatpulse,
-    fitFox,
-    imageHunt
+    fitfox,
+    imageHunt,
+    nxtwave
   } from "../assets";
   
   export const navLinks = [
@@ -103,7 +103,7 @@ import {
       "company_name": "Google",
       "icon": google,
       "iconBg": "#383E56",
-      "date": "Mar 2023",
+      "date": "March 2023",
       "points": [
         "Attended a 7-day Google bootcamp focused on web development.",
         "Developed a Netflix clone landing page using React.js and related technologies.",
@@ -113,11 +113,11 @@ import {
       ]
     },    
     {
-      title: "Certification of Programming with Python",
+      title: "Programming with Python",
       company_name: "NxtWave",
-      icon: NxtWave,
+      icon: nxtwave,
       iconBg: "#E6DEDD",
-      date: "Dec 2023 - Feb 2024",
+      date: "December 2023 - February 2024",
       points: [
         "Completed all topics and assignments as part of the NxtWave certification program.",
         "Gained Python certification, showcasing proficiency in Python programming and related technologies.",
@@ -129,9 +129,9 @@ import {
     {
       title: "SQL Certification",
       company_name: "NxtWave",
-      icon: NxtWave,
+      icon: nxtwave,
       iconBg: "#fff",
-      date: "Mar 2024 - Apr 2024",
+      date: "March 2024 - April 2024",
       points: [
        "Completed all SQL-related topics and assignments as part of the NxtWave certification program.",
        "Developed and maintained databases using SQL and other relational database technologies.",
@@ -139,11 +139,11 @@ import {
       ],
     },
     {
-      title: "React Certification",
+      title: "React JS Certification",
       company_name: "NxtWave",
       icon: react,
       iconBg: "#E6DEDD",
-      date: "June 2024 - Sept 2024",
+      date: "June 2024 - September 2024",
       points: [
         "Developed and maintained web applications using React.js and related technologies.",
         "Learned React concepts, including state management and lifecycle methods, as well as advanced topics like hooks and context API.",
@@ -246,10 +246,10 @@ import {
         },
         {
           "name": "animations",
-          "color": "yellow-text-gradient"
+          "color": "blue-text-gradient"
         }
       ],
-      "image": fitFox,
+      "image": fitfox,
       "source_code_link": "https://github.com/Azar698/fitfox-studio-web",
       
     }    

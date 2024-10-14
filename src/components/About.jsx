@@ -24,7 +24,7 @@ const About = () => {
     <>
       <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>Introduction</p>
-        <h2 className={styles.sectionHeadText}>Overview</h2>
+        <h2 className={styles.sectionHeadText}>Overview.</h2>
         <motion.p className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]' varianta={fadeIn("","",0.1,1)}>
         Im a front-end developer who builds clean, responsive websites using React, JavaScript, HTML, and CSS. My focus is on creating great user experiences, with fast and mobile-friendly designs that work well on any device. Im passionate about turning ideas into engaging and visually appealing websites. Lets bring your vision to life!
         </motion.p>

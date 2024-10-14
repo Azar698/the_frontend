@@ -19,12 +19,13 @@ import threejs from "./tech/threejs.svg";
 import sql from "./tech/sql.png";
 import python from "./tech/python.png";
 
-import NxtWave from "./company/NxtWave.png";
+import nxtwave from './company/nxtwave.png';
+
 import google from "./company/google.png";
 import react from "./company/react.png";
 
 import chatpulse from "./chatpulse.png";
-import fitFox from "./fitFox.png";
+import fitfox from "./fitfox.png";
 import imageHunt from "./imageHunt.png";
 
 export {
@@ -46,10 +47,10 @@ export {
   threejs,
   sql,
   python,
-  NxtWave,
+  nxtwave,
   google,
   react,
   chatpulse,
-  fitFox,
+  fitfox,
   imageHunt
 };
