@@ -45,9 +45,10 @@ const BarLoader = () => {
 const PromptDialog = ({ isOpen, message, onClose }) => {
   if (!isOpen) return null;
   
-   
-   const successClassName = message === "Thank you. I will get back to you as soon as possible." ? "bg-white/20 backdrop-blur-md rounded-lg p-6 shadow-lg border border-white/30 text-white" : "bg-white/20 backdrop-blur-md rounded-lg p-6 shadow-lg  text-red-100";
-   
+  const successClassName = message === "Thank you. I will get back to you as soon as possible."
+    ? "bg-white/20 backdrop-blur-md rounded-lg p-6 shadow-lg border border-white/30 text-white w-[90%] sm:w-[60%] max-w-sm"
+    : "bg-white/20 backdrop-blur-md rounded-lg p-6 shadow-lg text-red-100 w-[90%] sm:w-[60%] max-w-sm";
+  
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div className={`${successClassName} justify-center flex-col items-center p-6 rounded-lg shadow-lg max-w-sm w-full`}>
