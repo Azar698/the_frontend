@@ -19,13 +19,13 @@ import threejs from "./tech/threejs.svg";
 import sql from "./tech/sql.png";
 import python from "./tech/python.png";
 
-import nxtwave from './company/nxtwave.png';
+import nxtwave from './company/nxtwave_logo.png';
 
 import google from "./company/google.png";
 import react from "./company/react.png";
 
 import chatpulse from "./chatpulse.png";
-import fitfox from "./fitfox.png";
+import fitfox from "./fitfox_studio.png";
 import imageHunt from "./imageHunt.png";
 
 export {
