@@ -2,6 +2,10 @@ import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { IoMdSend } from "react-icons/io";
+import { BiCommentError } from "react-icons/bi";
+import { MdMarkEmailRead } from "react-icons/md";
+
+
 
 import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
@@ -40,11 +44,20 @@ const BarLoader = () => {
 
 const PromptDialog = ({ isOpen, message, onClose }) => {
   if (!isOpen) return null;
-
+  
+   
+   const successClassName = message === "Thank you. I will get back to you as soon as possible." ? "bg-white/20 backdrop-blur-md rounded-lg p-6 shadow-lg border border-white/30 text-white" : "bg-white/20 backdrop-blur-md rounded-lg p-6 shadow-lg  text-red-100";
+   
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-tertiary p-6 rounded-lg shadow-lg max-w-sm w-full">
+      <div className={`${successClassName} justify-center flex-col items-center p-6 rounded-lg shadow-lg max-w-sm w-full`}>
         <p className="text-white text-center mb-4">{message}</p>
+        <div className="flex justify-center mb-4">
+          {message === "Thank you. I will get back to you as soon as possible." ? 
+            <MdMarkEmailRead  size={50}/> : 
+            <BiCommentError  size={50} />
+          }
+        </div>
         <button
           onClick={onClose}
           className="bg-primary text-white py-2 px-4 rounded-lg w-full hover:bg-opacity-80 transition-colors"
