@@ -251,6 +251,7 @@ import {
       ],
       "image": fitfox,
       "source_code_link": "https://github.com/Azar698/fitfox-studio-web",
+      "live_link": "https://fitfox-studio.netlify.app/"
       
     }    
   ];
