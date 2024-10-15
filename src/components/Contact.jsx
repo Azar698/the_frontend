@@ -73,8 +73,6 @@ const PromptDialog = ({ isOpen, message, onClose }) => {
 const Contact = () => {
   const [promptOpen, setPromptOpen] = useState(false);
   const [promptMessage, setPromptMessage] = useState("");
-  const [alertOpen, setAlertOpen] = useState(false);
-  const [alertMessage, setAlertMessage] = useState(null);
   const formRef = useRef();
   const [form, setForm] = useState({
     name: "",
