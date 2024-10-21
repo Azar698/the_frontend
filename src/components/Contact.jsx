@@ -1,16 +1,22 @@
 import React, { useRef, useState } from "react";
+
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { IoMdSend } from "react-icons/io";
 import { BiCommentError } from "react-icons/bi";
 import { MdMarkEmailRead } from "react-icons/md";
 
-
-
 import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
+
+
+
+
+
+
+
 
 const BarLoader = () => {
   const bars = [
@@ -159,7 +165,7 @@ const Contact = () => {
               name='email'
               value={form.email}
               onChange={handleChange}
-              placeholder="What's your web address?"
+              placeholder="What's your Email Address?"
               className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
             />
           </label>
@@ -181,6 +187,7 @@ const Contact = () => {
           >
             {loading ? <BarLoader/> : <IoMdSend />}
           </button>
+          
         </form>
       </motion.div>
 
