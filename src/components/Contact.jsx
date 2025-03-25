@@ -14,17 +14,13 @@ import { slideIn } from "../utils/motion";
 
 
 
-
-
-
-
 const BarLoader = () => {
   const bars = [
-    { delay: 0, color: '#4c86f9' },   // First bar
-    { delay: 0.1, color: '#49a84c' }, // Second bar
-    { delay: 0.2, color: '#f6bb02' }, // Third bar
-    { delay: 0.3, color: '#f6bb02' }, // Fourth bar
-    { delay: 0.4, color: '#2196f3' }, // Fifth bar
+    { delay: 0, color: '#4c86f9' },
+    { delay: 0.1, color: '#49a84c' },
+    { delay: 0.2, color: '#f6bb02' },
+    { delay: 0.3, color: '#f6bb02' },
+    { delay: 0.4, color: '#2196f3' },
   ];
 
   return (
@@ -50,19 +46,19 @@ const BarLoader = () => {
 
 const PromptDialog = ({ isOpen, message, onClose }) => {
   if (!isOpen) return null;
-  
+
   const successClassName = message === "Thank you. I will get back to you as soon as possible."
     ? "bg-white/20 backdrop-blur-md rounded-lg p-6 shadow-lg border border-white/30 text-white w-[90%] sm:w-[60%] max-w-sm"
     : "bg-white/20 backdrop-blur-md rounded-lg p-6 shadow-lg text-red-100 w-[90%] sm:w-[60%] max-w-sm";
-  
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div className={`${successClassName} justify-center flex-col items-center p-6 rounded-lg shadow-lg max-w-sm w-full`}>
         <p className="text-white text-center mb-4">{message}</p>
         <div className="flex justify-center mb-4">
-          {message === "Thank you. I will get back to you as soon as possible." ? 
-            <MdMarkEmailRead  size={50}/> : 
-            <BiCommentError  size={50} />
+          {message === "Thank you. I will get back to you as soon as possible."
+            ? <MdMarkEmailRead size={50} />
+            : <BiCommentError size={50} />
           }
         </div>
         <button
@@ -80,26 +76,45 @@ const Contact = () => {
   const [promptOpen, setPromptOpen] = useState(false);
   const [promptMessage, setPromptMessage] = useState("");
   const formRef = useRef();
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [errors, setErrors] = useState({}); // Track validation errors
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    const { target } = e;
-    const { name, value } = target;
+  const validateForm = () => {
+    let errors = {};
 
-    setForm({
-      ...form,
-      [name]: value,
-    });
+    if (!form.name.trim()) {
+      errors.name = "Name is required";
+    } else if (form.name.length < 3) {
+      errors.name = "Name must be at least 3 characters";
+    }
+
+    if (!form.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      errors.email = "Enter a valid email address";
+    }
+
+    if (!form.message.trim()) {
+      errors.message = "Message is required";
+    } else if (form.message.length < 10) {
+      errors.message = "Message must be at least 10 characters";
+    }
+
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+    setErrors({ ...errors, [name]: "" }); // Clear error when user starts typing
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
+
     setLoading(true);
 
     emailjs
@@ -132,79 +147,66 @@ const Contact = () => {
   };
 
   return (
-    <div
-      className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
-    >
+    <div className="xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden">
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className='flex-[0.75] bg-black-100 p-8 rounded-2xl'
+        className="flex-[0.75] bg-black-100 p-8 rounded-2xl"
       >
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
 
-        <form
-          ref={formRef}
-          onSubmit={handleSubmit}
-          className='mt-12 flex flex-col gap-8'
-        >
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Name</span>
+        <form ref={formRef} onSubmit={handleSubmit} className="mt-12 flex flex-col gap-8">
+          <label className="flex flex-col">
+            <span className="text-white font-medium mb-2">Your Name</span>
             <input
-              type='text'
-              name='name'
+              type="text"
+              name="name"
               value={form.name}
               onChange={handleChange}
               placeholder="What's your good name?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              className="bg-tertiary py-4 px-6 text-white rounded-lg outline-none border-none font-medium"
             />
+            {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
           </label>
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your email</span>
+          
+          <label className="flex flex-col">
+            <span className="text-white font-medium mb-2">Your Email</span>
             <input
-              type='email'
-              name='email'
+              type="email"
+              name="email"
               value={form.email}
               onChange={handleChange}
               placeholder="What's your Email Address?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              className="bg-tertiary py-4 px-6 text-white rounded-lg outline-none border-none font-medium"
             />
-          </label>
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Message</span>
-            <textarea
-              rows={7}
-              name='message'
-              value={form.message}
-              onChange={handleChange}
-              placeholder='What you want to say?'
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
-            />
+            {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
           </label>
 
-          <button
-            type='submit'
-            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'
-          >
-            {loading ? <BarLoader/> : <IoMdSend />}
+          <label className="flex flex-col">
+            <span className="text-white font-medium mb-2">Your Message</span>
+            <textarea
+              rows={7}
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              placeholder="What do you want to say?"
+              className="bg-tertiary py-4 px-6 text-white rounded-lg outline-none border-none font-medium"
+            />
+            {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
+          </label>
+
+          <button type="submit" className="bg-tertiary py-3 px-2 w-[100px] flex items-center justify-center rounded-xl text-white font-bold">
+            {loading ? <BarLoader /> : <IoMdSend />}
           </button>
-          
         </form>
       </motion.div>
 
-      <motion.div
-        variants={slideIn("right", "tween", 0.2, 1)}
-        className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
-      >
-        <EarthCanvas />
-      </motion.div>
-
-      <PromptDialog
-        isOpen={promptOpen}
-        message={promptMessage}
-        onClose={() => setPromptOpen(false)}
-      />
+      <PromptDialog isOpen={promptOpen} message={promptMessage} onClose={() => setPromptOpen(false)} />
     </div>
   );
 };
 
 export default SectionWrapper(Contact, "contact");
+
+
+
