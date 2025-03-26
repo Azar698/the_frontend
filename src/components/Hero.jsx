@@ -38,9 +38,9 @@ const Hero = () => {
         </div>
 
         <div>
-          <h1 className={`${styles.heroHeadText} text-white`}>
+          <p className={`${styles.heroHeadText} text-white`}>
             {getGreet()}<br/>I'm <span className='text-[#915EFF]'>Azar</span>
-          </h1>
+          </p>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
             I develop sleek, responsive websites <br className='sm:block hidden' />
             that turn ideas into immersive digital experiences.

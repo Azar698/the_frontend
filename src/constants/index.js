@@ -22,7 +22,7 @@ import {
     nxtwave
   } from "../assets";
   
-  export const navLinks = [
+  const navLinks = [
     {
       id: "about",
       title: "About",
@@ -182,9 +182,9 @@ import {
   
   const projects = [
     {
-      name: "Chat Pulse",
+      name: "MOE",
       description:
-        "ChatPulse is an AI-powered web application, built using React.js, designed to provide conversational intelligence similar to Gemini AI.",
+        "MOE - The modular balcony power plant is a German based company which provides the handy solar with storage.",
       tags: [
         {
           name: "react",
@@ -200,8 +200,8 @@ import {
         },
       ],
       image: chatpulse,
-      source_code_link: "https://github.com/Azar698/chatPulsegpt",
-      live_link: "https://chat-pulsegpt-c8iy5xpkz-azar698s-projects.vercel.app/"
+      source_code_link: "https://github.com/Azar698/solar-moe",
+      live_link: "https://moesolarco.netlify.app/"
     },
 
     {
@@ -256,4 +256,4 @@ import {
     }    
   ];
   
-  export { services, technologies, experiences, testimonials, projects };
+  export { services, technologies, experiences, testimonials, projects,navLinks };
