@@ -11,15 +11,23 @@ const CustomCursor = () => {
   const springY = useSpring(mouseY, { stiffness: 100, damping: 10 });
 
   useEffect(() => {
+    // Hide cursor on mobile devices
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      setVisible(false);
+      return;
+    }
+
     const moveCursor = (e) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
     };
 
     window.addEventListener("mousemove", moveCursor);
-
     return () => window.removeEventListener("mousemove", moveCursor);
   }, [mouseX, mouseY]);
+
+  if (!visible) return null;
 
   return (
     <motion.div
