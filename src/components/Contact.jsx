@@ -141,89 +141,93 @@ const Contact = () => {
   };
 
   return (
-    <div className="xl:mt-12 flex xl:flex-row flex-col-reverse items-center gap-10 overflow-hidden">
-  {/* Contact Form */}
-  <motion.div
-    variants={slideIn("left", "tween", 0.2, 1)}
-    className="flex-[0.5] h-auto bg-black-100 p-8 rounded-2xl"
-  >
-    <p className={styles.sectionSubText}>Get in touch</p>
-    <h3 className={styles.sectionHeadText}>Contact.</h3>
-
-    {/* Form */}
-    <form ref={formRef} onSubmit={handleSubmit} className="mt-12 flex flex-col gap-8">
-      {/* Name */}
-      <label className="flex flex-col">
-        <span className="text-white font-medium mb-2">Your Name</span>
-        <input
-          type="text"
-          name="name"
-          value={form.name}
-          onChange={handleChange}
-          placeholder="What's your good name?"
-          className="bg-tertiary py-4 px-6 text-white rounded-lg outline-none border-none font-medium"
-        />
-        {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
-      </label>
-
-      {/* Email */}
-      <label className="flex flex-col">
-        <span className="text-white font-medium mb-2">Your Email</span>
-        <input
-          type="email"
-          name="email"
-          value={form.email}
-          onChange={handleChange}
-          placeholder="What's your Email Address?"
-          className="bg-tertiary py-4 px-3 text-white rounded-lg outline-none border-none font-medium"
-        />
-        {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
-      </label>
-
-      {/* Message */}
-      <label className="flex flex-col">
-        <span className="text-white font-medium mb-2">Your Message</span>
-        <textarea
-          rows={3}
-          name="message"
-          value={form.message}
-          onChange={handleChange}
-          placeholder="What do you want to say?"
-          className="bg-tertiary py-4 px-6 text-white rounded-lg outline-none border-none font-medium"
-        />
-        {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
-      </label>
-
-      {/* Submit */}
-      <button
-        type="submit"
-        className="bg-tertiary py-3 px-2 w-[100px] flex items-center justify-center rounded-xl text-white font-bold"
+    <div className="xl:mt-12 flex xl:flex-row flex-col-reverse items-center gap-10 overflow-hidden px-4 sm:px-8 md:px-12">
+      {/* Contact Form */}
+      <motion.div
+        variants={slideIn("left", "tween", 0.2, 1)}
+        className="flex-1 w-full bg-black-100 p-6 sm:p-8 rounded-2xl"
       >
-        {loading ? <BarLoader /> : <IoMdSend />}
-      </button>
-    </form>
-  </motion.div>
-
-  {/* Image on the right */}
-  <motion.div
-    variants={slideIn("right", "tween", 0.2, 1)}
-    className="md:flex sm:hidden flex-[0.4] flex justify-center items-center"
-  >
-    <img
-      src={getintouchimg}
-      alt="get-in-touch"
-      className="w-full max-w-[400px] h-auto object-contain"
-    />
-  </motion.div>
-
-  {/* Dialog */}
-  <PromptDialog
-    isOpen={promptOpen}
-    message={promptMessage}
-    onClose={() => setPromptOpen(false)}
-  />
-</div>
+        <p className={`${styles.sectionSubText} text-center sm:text-left`}>Get in touch</p>
+        <h3 className={`${styles.sectionHeadText} text-center sm:text-left`}>Contact.</h3>
+  
+        <form
+          ref={formRef}
+          onSubmit={handleSubmit}
+          className="mt-10 flex flex-col gap-6 sm:gap-8"
+        >
+          {/* Name */}
+          <label className="flex flex-col">
+            <span className="text-white font-medium mb-2">Your Name</span>
+            <input
+              type="text"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              placeholder="What's your good name?"
+              className="bg-tertiary py-3 px-4 sm:py-4 sm:px-6 text-white rounded-lg outline-none border-none font-medium"
+            />
+            {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+          </label>
+  
+          {/* Email */}
+          <label className="flex flex-col">
+            <span className="text-white font-medium mb-2">Your Email</span>
+            <input
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="What's your Email Address?"
+              className="bg-tertiary py-3 px-4 sm:py-4 sm:px-6 text-white rounded-lg outline-none border-none font-medium"
+            />
+            {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+          </label>
+  
+          {/* Message */}
+          <label className="flex flex-col">
+            <span className="text-white font-medium mb-2">Your Message</span>
+            <textarea
+              rows={4}
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              placeholder="What do you want to say?"
+              className="bg-tertiary py-3 px-4 sm:py-4 sm:px-6 text-white rounded-lg outline-none border-none font-medium resize-none"
+            />
+            {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
+          </label>
+  
+          {/* Submit */}
+          <button
+            type="submit"
+            className="bg-tertiary py-3 px-2 sm:px-4 w-[50%] sm:w-[120px] flex items-center justify-center rounded-xl text-white font-bold "
+          >
+            {loading ? <BarLoader /> : <IoMdSend />}
+          </button>
+        </form>
+      </motion.div>
+  
+      {/* Image on the right */}
+      <motion.div
+        variants={slideIn("right", "tween", 0.2, 1)}
+        className="flex-1 w-full flex justify-center items-center"
+      >
+        <img
+          src={getintouchimg}
+          alt="get-in-touch"
+          className="w-full max-w-[320px] sm:max-w-[400px] h-auto object-contain"
+        />
+      </motion.div>
+  
+      {/* Dialog */}
+      <PromptDialog
+        isOpen={promptOpen}
+        message={promptMessage}
+        onClose={() => setPromptOpen(false)}
+      />
+    </div>
   );
+  
 };
 
 export default SectionWrapper(Contact, "contact");
