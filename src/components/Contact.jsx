@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { IoMdSend } from "react-icons/io";
@@ -7,20 +6,17 @@ import { BiCommentError } from "react-icons/bi";
 import { MdMarkEmailRead } from "react-icons/md";
 
 import { styles } from "../styles";
-import { EarthCanvas } from "./canvas";
+import { getintouchimg } from "../assets";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 
-
-
-
 const BarLoader = () => {
   const bars = [
-    { delay: 0, color: '#4c86f9' },
-    { delay: 0.1, color: '#49a84c' },
-    { delay: 0.2, color: '#f6bb02' },
-    { delay: 0.3, color: '#f6bb02' },
-    { delay: 0.4, color: '#2196f3' },
+    { delay: 0, color: "#4c86f9" },
+    { delay: 0.1, color: "#49a84c" },
+    { delay: 0.2, color: "#f6bb02" },
+    { delay: 0.3, color: "#f6bb02" },
+    { delay: 0.4, color: "#2196f3" },
   ];
 
   return (
@@ -34,7 +30,7 @@ const BarLoader = () => {
           animate={{ scaleY: [0.03, 1, 0.05] }}
           transition={{
             duration: 0.9,
-            ease: 'easeInOut',
+            ease: "easeInOut",
             repeat: Infinity,
             delay: bar.delay,
           }}
@@ -47,19 +43,17 @@ const BarLoader = () => {
 const PromptDialog = ({ isOpen, message, onClose }) => {
   if (!isOpen) return null;
 
-  const successClassName = message === "Thank you. I will get back to you as soon as possible."
+  const isSuccess = message === "Thank you. I will get back to you as soon as possible.";
+  const containerClass = isSuccess
     ? "bg-white/20 backdrop-blur-md rounded-lg p-6 shadow-lg border border-white/30 text-white w-[90%] sm:w-[60%] max-w-sm"
     : "bg-white/20 backdrop-blur-md rounded-lg p-6 shadow-lg text-red-100 w-[90%] sm:w-[60%] max-w-sm";
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className={`${successClassName} justify-center flex-col items-center p-6 rounded-lg shadow-lg max-w-sm w-full`}>
+      <div className={containerClass}>
         <p className="text-white text-center mb-4">{message}</p>
         <div className="flex justify-center mb-4">
-          {message === "Thank you. I will get back to you as soon as possible."
-            ? <MdMarkEmailRead size={50} />
-            : <BiCommentError size={50} />
-          }
+          {isSuccess ? <MdMarkEmailRead size={50} /> : <BiCommentError size={50} />}
         </div>
         <button
           onClick={onClose}
@@ -77,7 +71,7 @@ const Contact = () => {
   const [promptMessage, setPromptMessage] = useState("");
   const formRef = useRef();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [errors, setErrors] = useState({}); // Track validation errors
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
   const validateForm = () => {
@@ -108,7 +102,7 @@ const Contact = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
-    setErrors({ ...errors, [name]: "" }); // Clear error when user starts typing
+    setErrors({ ...errors, [name]: "" });
   };
 
   const handleSubmit = (e) => {
@@ -119,8 +113,8 @@ const Contact = () => {
 
     emailjs
       .send(
-        'service_dvn8cfk',
-        'template_jlz1il3',
+        "service_dvn8cfk",
+        "template_jlz1il3",
         {
           from_name: form.name,
           to_name: "Azar",
@@ -128,7 +122,7 @@ const Contact = () => {
           to_email: "mohammadazaruddin6302@gmail.com",
           message: form.message,
         },
-        'E6VPQdezzwf0JAFve'
+        "E6VPQdezzwf0JAFve"
       )
       .then(
         () => {
@@ -138,8 +132,8 @@ const Contact = () => {
           setForm({ name: "", email: "", message: "" });
         },
         (error) => {
-          setLoading(false);
           console.error(error);
+          setLoading(false);
           setPromptMessage("Oops! Something went wrong. Please try again.");
           setPromptOpen(true);
         }
@@ -147,66 +141,89 @@ const Contact = () => {
   };
 
   return (
-    <div className="xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden">
-      <motion.div
-        variants={slideIn("left", "tween", 0.2, 1)}
-        className="flex-[0.75] bg-black-100 p-8 rounded-2xl"
+    <div className="xl:mt-12 flex xl:flex-row flex-col-reverse items-center gap-10 overflow-hidden">
+  {/* Contact Form */}
+  <motion.div
+    variants={slideIn("left", "tween", 0.2, 1)}
+    className="flex-[0.5] h-auto bg-black-100 p-8 rounded-2xl"
+  >
+    <p className={styles.sectionSubText}>Get in touch</p>
+    <h3 className={styles.sectionHeadText}>Contact.</h3>
+
+    {/* Form */}
+    <form ref={formRef} onSubmit={handleSubmit} className="mt-12 flex flex-col gap-8">
+      {/* Name */}
+      <label className="flex flex-col">
+        <span className="text-white font-medium mb-2">Your Name</span>
+        <input
+          type="text"
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          placeholder="What's your good name?"
+          className="bg-tertiary py-4 px-6 text-white rounded-lg outline-none border-none font-medium"
+        />
+        {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+      </label>
+
+      {/* Email */}
+      <label className="flex flex-col">
+        <span className="text-white font-medium mb-2">Your Email</span>
+        <input
+          type="email"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+          placeholder="What's your Email Address?"
+          className="bg-tertiary py-4 px-3 text-white rounded-lg outline-none border-none font-medium"
+        />
+        {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+      </label>
+
+      {/* Message */}
+      <label className="flex flex-col">
+        <span className="text-white font-medium mb-2">Your Message</span>
+        <textarea
+          rows={3}
+          name="message"
+          value={form.message}
+          onChange={handleChange}
+          placeholder="What do you want to say?"
+          className="bg-tertiary py-4 px-6 text-white rounded-lg outline-none border-none font-medium"
+        />
+        {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
+      </label>
+
+      {/* Submit */}
+      <button
+        type="submit"
+        className="bg-tertiary py-3 px-2 w-[100px] flex items-center justify-center rounded-xl text-white font-bold"
       >
-        <p className={styles.sectionSubText}>Get in touch</p>
-        <h3 className={styles.sectionHeadText}>Contact.</h3>
+        {loading ? <BarLoader /> : <IoMdSend />}
+      </button>
+    </form>
+  </motion.div>
 
-        <form ref={formRef} onSubmit={handleSubmit} className="mt-12 flex flex-col gap-8">
-          <label className="flex flex-col">
-            <span className="text-white font-medium mb-2">Your Name</span>
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              placeholder="What's your good name?"
-              className="bg-tertiary py-4 px-6 text-white rounded-lg outline-none border-none font-medium"
-            />
-            {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
-          </label>
-          
-          <label className="flex flex-col">
-            <span className="text-white font-medium mb-2">Your Email</span>
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              placeholder="What's your Email Address?"
-              className="bg-tertiary py-4 px-6 text-white rounded-lg outline-none border-none font-medium"
-            />
-            {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
-          </label>
+  {/* Image on the right */}
+  <motion.div
+    variants={slideIn("right", "tween", 0.2, 1)}
+    className="md:flex sm:hidden flex-[0.4] flex justify-center items-center"
+  >
+    <img
+      src={getintouchimg}
+      alt="get-in-touch"
+      className="w-full max-w-[400px] h-auto object-contain"
+    />
+  </motion.div>
 
-          <label className="flex flex-col">
-            <span className="text-white font-medium mb-2">Your Message</span>
-            <textarea
-              rows={7}
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              placeholder="What do you want to say?"
-              className="bg-tertiary py-4 px-6 text-white rounded-lg outline-none border-none font-medium"
-            />
-            {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
-          </label>
-
-          <button type="submit" className="bg-tertiary py-3 px-2 w-[100px] flex items-center justify-center rounded-xl text-white font-bold">
-            {loading ? <BarLoader /> : <IoMdSend />}
-          </button>
-        </form>
-      </motion.div>
-
-      <PromptDialog isOpen={promptOpen} message={promptMessage} onClose={() => setPromptOpen(false)} />
-    </div>
+  {/* Dialog */}
+  <PromptDialog
+    isOpen={promptOpen}
+    message={promptMessage}
+    onClose={() => setPromptOpen(false)}
+  />
+</div>
   );
 };
 
 export default SectionWrapper(Contact, "contact");
-
-
-

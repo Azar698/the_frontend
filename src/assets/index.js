@@ -24,9 +24,10 @@ import nxtwave from './company/nxtwave_logo.png';
 import google from "./company/google.png";
 import react from "./company/react.png";
 
-import chatpulse from "./chatpulse.png";
+import moe from "./moe.png"
 import fitfox from "./fitfox_studio.png";
 import imageHunt from "./imageHunt.png";
+import getintouchimg from "./get-in-touch-img.png"
 
 export {
   logoImg,
@@ -50,7 +51,8 @@ export {
   nxtwave,
   google,
   react,
-  chatpulse,
+  moe,
   fitfox,
-  imageHunt
+  imageHunt,
+  getintouchimg
 };
