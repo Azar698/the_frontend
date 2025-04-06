@@ -43,24 +43,30 @@ const FeedbackCard = ({
   </motion.div>
 );
 
+const getRandomTestimonials = (count = 3) => {
+  const shuffled = [...testimonials].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+};
+
 const Feedbacks = () => {
+  const randomTestimonials = getRandomTestimonials(3); // You can change the number to 4 or 5 if needed
+
   return (
     <div className={`mt-12 bg-black-100 rounded-[20px]`}>
-      <div
-        className={`bg-tertiary rounded-2xl ${styles.padding} min-h-[300px]`}
-      >
+      <div className={`bg-tertiary rounded-2xl ${styles.padding} min-h-[300px]`}>
         <motion.div variants={textVariant()}>
           <p className={styles.sectionSubText}>What others say</p>
           <h2 className={styles.sectionHeadText}>Testimonials.</h2>
         </motion.div>
       </div>
       <div className={`-mt-20 pb-14 ${styles.paddingX} flex flex-wrap gap-7`}>
-        {testimonials.map((testimonial, index) => (
+        {randomTestimonials.map((testimonial, index) => (
           <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
         ))}
       </div>
     </div>
   );
 };
+
 
 export default SectionWrapper(Feedbacks, "feedbacks");

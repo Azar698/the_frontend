@@ -1,33 +1,40 @@
 import React, { useEffect, useState } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [visible, setVisible] = useState(true);
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springX = useSpring(mouseX, { stiffness: 100, damping: 10 });
+  const springY = useSpring(mouseY, { stiffness: 100, damping: 10 });
 
   useEffect(() => {
-    const updateCursor = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+    const moveCursor = (e) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
     };
 
-    window.addEventListener("mousemove", updateCursor);
+    window.addEventListener("mousemove", moveCursor);
 
-    return () => {
-      window.removeEventListener("mousemove", updateCursor);
-    };
-  }, []);
+    return () => window.removeEventListener("mousemove", moveCursor);
+  }, [mouseX, mouseY]);
 
   return (
-    <div
+    <motion.div
       style={{
         position: "fixed",
-        top: position.y + "px",
-        left: position.x + "px",
+        top: 0,
+        left: 0,
+        x: springX,
+        y: springY,
         width: "20px",
         height: "20px",
-        backgroundColor: "rgba(255, 255, 255, 0.7)", // Change color as needed
+        backgroundColor: "rgba(255, 255, 255, 0.7)",
         borderRadius: "50%",
         pointerEvents: "none",
         transform: "translate(-50%, -50%)",
-        transition: "transform 0.1s ease-out",
         zIndex: 9999,
       }}
     />

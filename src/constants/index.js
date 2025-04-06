@@ -1,4 +1,3 @@
-import { i, li } from "framer-motion/client";
 import {
     mobile,
     backend,
@@ -10,18 +9,18 @@ import {
     reactjs,
     tailwind,
     mongodb,
+    moe,
     git,
-    threejs,
     sql, 
     python,
     google,
     react,
-    chatpulse,
     fitfox,
     imageHunt,
     nxtwave
   } from "../assets";
   
+
   const navLinks = [
     {
       id: "about",
@@ -82,10 +81,6 @@ import {
       icon: mongodb,
     },
     {
-      name: "Three JS",
-      icon: threejs,
-    },
-    {
       name: "git",
       icon: git,
     },
@@ -133,8 +128,8 @@ import {
       iconBg: "#fff",
       date: "March 2024 - April 2024",
       points: [
-       "Completed all SQL-related topics and assignments as part of the NxtWave certification program.",
-       "Developed and maintained databases using SQL and other relational database technologies.",
+      "Completed all SQL-related topics and assignments as part of the NxtWave certification program.",
+      "Developed and maintained databases using SQL and other relational database technologies.",
     "Implemented efficient SQL queries for data retrieval and manipulation.",
       ],
     },
@@ -155,30 +150,77 @@ import {
   
   const testimonials = [
     {
-      testimonial:
-        "ChatPulse has transformed our customer support with its natural AI conversations and smooth experience. Great job to the team!",
+      testimonial: "ChatPulse helps us reply faster. Feels like we hired a super smart assistant!",
       name: "Rohit",
       designation: "Product Manager",
       company: "TechSolutions",
       image: "https://randomuser.me/api/portraits/men/5.jpg",
     },
     {
-      testimonial:
-        "Image Hunt is intuitive and fast, providing spot-on AI suggestions with a clean UI. It's a pleasure to use!",
+      testimonial: "Image Hunt’s AI suggestions are amazing! Our design workflow got a speed boost.",
       name: "Priya Menon",
       designation: "Graphic Designer",
       company: "CreativeEdge",
       image: "https://randomuser.me/api/portraits/women/4.jpg",
     },
     {
-      testimonial:
-        "Fit Fox Studio is visually stunning with smooth animations, making it easy to explore fitness programs. One of the best web apps I’ve used!",
+      testimonial: "Fit Fox is beautiful and functional. Loved the animations and layout!",
       name: "Anjali Verma",
       designation: "Fitness Trainer",
       company: "FitnessHub",
       image: "https://randomuser.me/api/portraits/women/6.jpg",
     },
+    {
+      testimonial: "Auraacast’s clean UI makes monitoring crypto feel effortless.",
+      name: "Siddharth",
+      designation: "Data Analyst",
+      company: "CryptoDesk",
+      image: "https://randomuser.me/api/portraits/men/6.jpg",
+    },
+    {
+      testimonial: "Our sales team loves ChatPulse. It feels natural and handles queries smartly.",
+      name: "Meera Shah",
+      designation: "Customer Experience Lead",
+      company: "BrightServe",
+      image: "https://randomuser.me/api/portraits/women/8.jpg",
+    },
+    {
+      testimonial: "Using Image Hunt feels like collaborating with a creative friend. Highly recommended!",
+      name: "Aditya",
+      designation: "UI/UX Designer",
+      company: "PixelCraft",
+      image: "https://randomuser.me/api/portraits/men/7.jpg",
+    },
+    {
+      testimonial: "Fit Fox helped me design fitness plans for my clients like a pro!",
+      name: "Neha Kapoor",
+      designation: "Wellness Coach",
+      company: "FitRise",
+      image: "https://randomuser.me/api/portraits/women/10.jpg",
+    },
+    {
+      testimonial: "ChatPulse is quick to integrate and feels like magic. Support quality is top-notch.",
+      name: "Karan Singh",
+      designation: "CTO",
+      company: "TechNest",
+      image: "https://randomuser.me/api/portraits/men/9.jpg",
+    },
+    {
+      testimonial: "We loved how intuitive Image Hunt is for our marketing team. A joy to use!",
+      name: "Riya Thomas",
+      designation: "Content Manager",
+      company: "BrandCore",
+      image: "https://randomuser.me/api/portraits/women/9.jpg",
+    },
+    {
+      testimonial: "Fit Fox's responsive design is perfect for both mobile and desktop users!",
+      name: "Saurav Mehta",
+      designation: "Frontend Developer",
+      company: "CodeSprint",
+      image: "https://randomuser.me/api/portraits/men/11.jpg",
+    },
   ];
+  
   
   const projects = [
     {
@@ -199,7 +241,7 @@ import {
           color: "pink-text-gradient",
         },
       ],
-      image: chatpulse,
+      image: moe,
       source_code_link: "https://github.com/Azar698/solar-moe",
       live_link: "https://moesolarco.netlify.app/"
     },

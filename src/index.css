@@ -12,6 +12,14 @@
   color-scheme: dark;
 }
 
+body {
+  cursor: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
 .hash-span {
   margin-top: -100px;
   padding-bottom: 100px;

@@ -18,7 +18,7 @@ const Tech = () => {
           }}
         >
           <motion.div 
-            variants={fadeIn("right", "spring", 0.5 * index, 0.75)} 
+            variants={fadeIn("left", "spring", 0.2 * index, 0.55)} 
             className='w-full h-full bg-tertiary rounded-full flex justify-center items-center'
           >
             <img 
